@@ -22,14 +22,21 @@ c = cnts[0]
 M = cv2.moments(c)
 cX = int((M["m10"] / M["m00"]) * ratio)
 cY = int((M["m01"] / M["m00"]) * ratio)
-shape = sd.detect(c)
+
+
+# nAngle = banyak sudut
+# list_angles = list besar sudut
+# list_length = list panjang sisi
+nAngle, list_angles, list_length = sd.detect(c)
+print(nAngle, list_angles, list_length)
+
+
 c = c.astype("float")
 c *= ratio
 c = c.astype("int")
 cv2.drawContours(image, [c], -1, (0, 255, 0), 2)
-cv2.putText(image, shape, (cX, cY), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2)
+cv2.putText(image, "shape", (cX, cY), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2)
 cv2.imshow("Image", image)
 cv2.waitKey(0)
-print(shape)
 
 cv2.destroyAllWindows()
