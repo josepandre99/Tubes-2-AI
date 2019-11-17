@@ -51,14 +51,14 @@
     (ada dua sudut sama)
     (not (bentuk ?))
     =>
-    (assert (bentuk "segitiga siku sama kaki)))
+    (assert (bentuk "segitiga siku sama kaki")))
 
 (defrule determine-segitiga-siku-tidak-beraturan ""
     (is siku)
     (tidak ada dua sudut sama)
     (not (bentuk ?))
     =>
-    (assert (is siku-sama-kaki)))
+    (assert (bentuk "segitiga siku tidak beraturan")))
 
 (defrule determine-segitiga-lancip ""
     (is segitiga)
@@ -75,18 +75,18 @@
     (assert (bentuk "segitiga lancip sama kaki")))
 
 (defrule determine-segitiga-lancip-sama-sisi ""
-    (is segitiga)
+    (is lancip)
     (semua sudut sama)
     (not (bentuk ?))
     =>
     (assert (bentuk "segitiga sama sisi")))
 
 (defrule determine-segitiga-lancip-tidak-beraturan ""
-    (is segitiga)
+    (is lancip)
     (tidak ada dua sudut sama)
     (not (bentuk ?))
     =>
-    (assert (bentuk "segitiga lancip tidak beraturan)))
+    (assert (bentuk "segitiga lancip tidak beraturan")))
 
 (defrule determine-segiempat ""
     (total-point 4)
@@ -111,7 +111,7 @@
     (assert (bentuk "layang-layang")))
 
 (defrule determine-segi-empat-beraturan ""
-    (is jajargenjang)
+    (semua sisi sama)
     (semua sudut sama)
     (not (bentuk ?))
     =>
@@ -196,14 +196,13 @@
 (defrule system-banner ""
     (declare (salience 10))
     =>
-    (printout t crlf crlf)
-    (printout t "Deteksi Bentuk")
-    (printout t crlf crlf))
+    (printout t crlf)
+    (printout t "Deteksi Bentuk"))
 
 (defrule print-bentuk ""
     (declare (salience 10))
     (bentuk ?item)
     =>
-    (printout t crlf crlf)
+    (printout t crlf)
     (printout t "Bentuk :")
     (format t " %s%n%n%n" ?item))
