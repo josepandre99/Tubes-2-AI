@@ -131,7 +131,7 @@ elif nAngle == 6 :
 env = Environment()
 
 #rule
-env.load('rule.clp')
+env.load('rule.txt')
 env.define_function(callRule)
 
 #list of activated rule

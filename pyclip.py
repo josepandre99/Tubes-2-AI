@@ -18,7 +18,7 @@ env = Environment()
 env.define_function(callRule)
 
 #rule
-env.load('rule.clp')
+env.load('rule.txt')
 env.reset()
 
 #fact
