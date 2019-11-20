@@ -3,7 +3,7 @@ import imutils
 import cv2
 
 
-image = cv2.imread("hexa.png")
+image = cv2.imread("usa.jpeg")
 resized = imutils.resize(image, width=300)
 ratio = image.shape[0] / float(resized.shape[0])
 
