@@ -4,7 +4,7 @@ import imutils
 import cv2
 
 def callRule (rule) :
-    file.write(rule + '\n')
+    listRuleActivated.append(rule)
 
 #Deteksi Gambar
 image = cv2.imread("usa.jpeg")
@@ -127,14 +127,15 @@ elif nAngle == 6 :
     else :
         list_facts.append("(semua sudut tidak sama)")
 
-file = open('listRuleActivated', 'w')
-
 #CLIPS
 env = Environment()
 
 #rule
 env.load('rule.clp')
 env.define_function(callRule)
+
+#list of activated rule
+listRuleActivated = []
 
 #list of used fact
 listFactsUsed = []
@@ -148,5 +149,3 @@ env.run()
 
 for f in env.facts() :
     listFactsUsed.append(f)
-
-file.close()
