@@ -3,8 +3,11 @@ from shape import ShapeDetector
 import imutils
 import cv2
 
+def callRule (rule) :
+    file.write(rule + '\n')
 
-image = cv2.imread("Shape_collections/Acute Triangle.jpg")
+#Deteksi Gambar
+image = cv2.imread("usa.jpeg")
 resized = imutils.resize(image, width=300)
 ratio = image.shape[0] / float(resized.shape[0])
 
@@ -124,12 +127,17 @@ elif nAngle == 6 :
     else :
         list_facts.append("(semua sudut tidak sama)")
 
+file = open('listRuleActivated', 'w')
 
 #CLIPS
 env = Environment()
 
 #rule
 env.load('rule.clp')
+env.define_function(callRule)
+
+#list of used fact
+listFactsUsed = []
 
 #fact
 for fact in list_facts :
@@ -137,3 +145,8 @@ for fact in list_facts :
     facts = env.assert_string(fact)
     
 env.run()
+
+for f in env.facts() :
+    listFactsUsed.append(f)
+
+file.close()
