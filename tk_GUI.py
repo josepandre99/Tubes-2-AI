@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
 from PIL import ImageTk, Image
+import webbrowser
 import os
 
 ###Functions
@@ -22,6 +23,9 @@ def load_img(frame,path):
     img_panel.image = render
     img_panel.pack()
 
+def openeditor():
+    webbrowser.open("rule.txt")
+
 def clear_widget(frame):
     for widget in frame.winfo_children():
         widget.destroy()
@@ -39,13 +43,13 @@ def OnDoubleClick(event):
     img_name = tree.item(item,"text") + ".jpg"
 
     exist = False
-    entries = os.listdir(os.getcwd() + "\\Shape_collections\\")
+    entries = os.listdir(os.getcwd() + "/Shape_collections/")
     for entry in entries:
         if(entry == img_name):
             exist = True
     
     if(exist):
-        path = os.getcwd() + "\\Shape_collections\\" + img_name
+        path = os.getcwd() + "/Shape_collections/" + img_name
         try:
             load_img(detection_img_frame, path)
         except BaseException:
@@ -67,7 +71,7 @@ source_img_lbl.grid(row=0, column=0)
 source_img_frame = Frame(upper_window, height=300, width=300, bg= from_rgb((255, 255, 255)))
 source_img_frame.grid(row=1, column=0)
 
-path = os.getcwd() + "\\Shape_collections\\init_source.jpg"
+path = os.getcwd() + "/Shape_collections/init_source.jpg"
 load_img(source_img_frame,path)
 
 pad("horizontal",upper_window,1,1,10)
@@ -79,7 +83,7 @@ detection_img_label.grid(row=0, column=2)
 detection_img_frame = Frame(upper_window, height=300, width=300, bg= from_rgb((255, 255, 255)))
 detection_img_frame.grid(row=1, column=2)
 
-path = os.getcwd() + "\\Shape_collections\\init_detection_img.jpg"
+path = os.getcwd() + "/Shape_collections/init_detection_img.jpg"
 load_img(detection_img_frame,path)
 
 pad("horizontal",upper_window,1,3,10)
@@ -100,7 +104,7 @@ open_img_btn = Button(menu_frame, text="Open Image", bg ="white", fg="black", wi
 open_img_btn.grid(row=1, column=0)
 
 ###============================== Open Rules
-open_rule_btn = Button(menu_frame, text="Open Rule Editor", bg ="white", fg="black", width=18)
+open_rule_btn = Button(menu_frame, text="Open Rule Editor", bg ="white", fg="black", width=18, command= lambda:openeditor())
 open_rule_btn.grid(row=3, column=0)
 
 ###============================== Show Rules
@@ -170,14 +174,14 @@ detection_result_frame = Frame(bottom_window, height=270, width=270, bg= from_rg
 detection_result_frame.grid(row=1, column=1)
 
 ###==================== Matched Facts
-matched_facts = Label(bottom_window, text="Detection Image")
+matched_facts = Label(bottom_window, text="Matched Facts")
 matched_facts.grid(row=0, column=3)
 
 matched_facts_frame = Frame(bottom_window, height=270, width=270, bg= from_rgb((255, 255, 255)))
 matched_facts_frame.grid(row=1, column=3)
 
 ###==================== Hit Rules
-hit_rules = Label(bottom_window, text="Detection Image")
+hit_rules = Label(bottom_window, text="Hit Rules")
 hit_rules.grid(row=0, column=5)
 
 hit_rules_frame = Frame(bottom_window, height=270, width=270, bg= from_rgb((255, 255, 255)))
