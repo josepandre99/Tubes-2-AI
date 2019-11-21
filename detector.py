@@ -12,6 +12,16 @@ blurred = cv2.GaussianBlur(gray, (5, 5), 0)
 
 thresh1,thresh2 = cv2.threshold(blurred, 210, 255, cv2.THRESH_BINARY_INV)
 
+# # Tambahan
+mean_c = cv2.adaptiveThreshold(blurred, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 15, 12)
+
+# gaus = cv2.adaptiveThreshold(blurred, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 91, 12)
+
+cnts = cv2.findContours(mean_c.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+
+# # -----
+
+
 cnts = cv2.findContours(thresh2.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 
 cnts = imutils.grab_contours(cnts)
