@@ -2,12 +2,11 @@ import clips
 import logging
 from clips import Environment, Symbol, LoggingRouter
 
-file = open('listRuleActivated', 'w')
-
 def callRule (rule) :
-    file.write(rule + '\n')
+    listRuleActivated.append(rule)
 
 listFactUsed = []
+listRuleActivated = []
 
 #logformat = '%(asctime)s - %(levelname)s - %(message)s'
 #logging.basicConfig(level=10, format=logformat)
@@ -19,7 +18,7 @@ env = Environment()
 env.define_function(callRule)
 
 #rule
-env.load('rule.clp')
+env.load('rule.txt')
 env.reset()
 
 #fact
@@ -47,5 +46,3 @@ for f in env.facts() :
 
 #for rule in listRuleActivated :
 #    print(rule)
-
-file.close()
