@@ -3,8 +3,8 @@ import imutils
 import cv2
 
 
-file_image = "Photos/bola.png"
-nAngleCheck = 5
+file_image = "trap_rata_kiri.jpeg"
+nAngleCheck = 4
 
 image = cv2.imread(file_image)
 # resized = imutils.resize(image, width=100)
