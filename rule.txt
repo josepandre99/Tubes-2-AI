@@ -108,61 +108,48 @@
 
 (defrule determine-jajargenjang ""
     (is segiempat)
-    (sisi 1 sama sisi 2)
-    (sisi 3 sama sisi 4)
+    (2 pasang sudut berhadapan sama)
     (not (bentuk ?))
     =>
     (callRule "determine-jajargenjang")
     (assert (is jajargenjang)))
 
 (defrule determine-layanglayang ""
-    (is jajargenjang)
-    (sudut 1 sama sudut 2)
-    (sudut 3 tidak sama sudut 4)
+    (is segiempat)
+    (1 pasang sudut berhadapan sama)
+    (1 pasang sudut berhadapan tidak sama)
     (not (bentuk ?))
     =>
     (callRule "determine-layanglayang")
     (assert (bentuk "layang-layang")))
 
 (defrule determine-segi-empat-beraturan ""
+    (is segiempat)
     (semua sisi sama)
-    (semua sudut sama)
     (not (bentuk ?))
     =>
     (callRule "determine-segi-empat-beraturan")
     (assert (bentuk "segi empat beraturan")))
 
-(defrule determine-trapesium ""
-    (is segiempat)
-    (sisi 1 sama sisi 2)
-    (sisi 3 tidak sama sisi 4)
-    (not (bentuk ?))
-    =>
-    (callRule "determine-trapesium")
-    (assert (is trapesium)))
-
 (defrule determine-trapesium-sama-kaki ""
-    (is trapesium)
-    (sudut 1 sama sudut 2)
-    (sudut 3 sama sudut 4)
+    (is segiempat)
+    (2 pasang sudut bersebelahan sama)
     (not (bentuk ?))
     =>
     (callRule "determine-trapesium-sama-kaki")
     (assert (bentuk "trapesium-sama-kaki")))
 
 (defrule determine-trapesium-rata-kiri ""
-    (is trapesium)
-    (sudut 1 sama sudut 2)
-    (sudut 1 sama 90)
+    (is segiempat)
+    (2 sudut kiri 90)
     (not (bentuk ?))
     =>
     (callRule "determine-trapesium-rata-kiri")
     (assert (bentuk "trapesium-rata-kiri")))
 
 (defrule determine-trapesium-rata-kanan ""
-    (is trapesium)
-    (sudut 3 sama sudut 4)
-    (sudut 3 sama 90)
+    (is segiempat)
+    (2 sudut kanan 90)
     (not (bentuk ?))
     =>
     (callRule "determine-trapesium-rata-kanan")
