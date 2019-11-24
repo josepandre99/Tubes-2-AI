@@ -4,6 +4,10 @@ from tkinter import filedialog
 from PIL import ImageTk, Image
 import webbrowser
 import os
+import determiner
+import time
+
+gambarKanan = ''
 
 ###Functions
 def from_rgb(rgb):
@@ -11,13 +15,37 @@ def from_rgb(rgb):
     """
     return "#%02x%02x%02x" % rgb
 
-def browse(frame):
-    filename = filedialog.askopenfilename(initialdir = "/", title = "Select file", filetypes = (("jpeg files","*.jpg"),("all files","*.*")))
-    load_img(frame,filename)
+def determineGambarKanan(argument):
+    switcher = {
+        'Acute Triangle': "segitiga lancip tidak beraturan",
+        'Blunt Isosceles Triangle': "segitiga tumpul sama kaki",
+        'Blunt Triangle': "segitiga tumpul tidak beraturan",
+        'Equilateral Triangle': "segitiga sama sisi",
+        'Irregular Hexagon': "segienam tidak beraturan",
+        'Irregular Pentagon': "segilima tidak beraturan",
+        'Isosceles Trapezoid': "trapesium-sama-kaki",
+        'Kite': "layang-layang",
+        'Left Trapezoid': "trapesium-rata-kiri",
+        'Regular Hexagon': "segienam sama sisi",
+        'Regular Pentagon': "segilima sama sisi",
+        'Right Trapezoid': "trapesium-rata-kanan",
+        'Right Triangle': "segitiga siku tidak beraturan",
+        'Square': "segi empat beraturan",
+        'Taper Isosceles Triangle': "segitiga lancip sama kaki"
+    }
 
-def load_img(frame,path):
+    return switcher.get(argument, "nothing")
+
+def browse(frame):
+    global angle_count
+    global opened_image_path
+    filename = filedialog.askopenfilename(initialdir = "/", title = "Select file", filetypes = (("jpeg files","*.jpg"),("all files","*.*")))
+    load_img(frame,filename,300,300)
+    opened_image_path = filename
+
+def load_img(frame,path,xSize,ySize):
     clear_widget(frame)
-    load = Image.open(path).resize((300,300), Image.ANTIALIAS)
+    load = Image.open(path).resize((xSize,ySize), Image.ANTIALIAS)
     render = ImageTk.PhotoImage(load)
     img_panel = Label(frame, image=render)
     img_panel.image = render
@@ -39,8 +67,24 @@ def pad(pad_type,frame,row_,column_,val):
         pad_frame.grid(row=row_, column=column_)
 
 def OnDoubleClick(event):
+    global angle_count
+    global gambarKanan
+
     item = tree.selection()[0]
     img_name = tree.item(item,"text") + ".jpg"
+
+    gambarKanan = determineGambarKanan(tree.item(item,"text"))
+
+
+    # Detect angle on the image(store to global variable)
+    if("Triangle" in img_name):
+        angle_count = 3
+    elif(("Kite" in img_name) or ("Square" in img_name) or ("Trapezoid" in img_name)):
+        angle_count = 4
+    elif("Pentagon" in img_name):
+        angle_count = 5
+    elif("Hexagon" in img_name):
+        angle_count = 6
 
     exist = False
     entries = os.listdir(os.getcwd() + "/Shape_collections/")
@@ -51,12 +95,75 @@ def OnDoubleClick(event):
     if(exist):
         path = os.getcwd() + "/Shape_collections/" + img_name
         try:
-            load_img(detection_img_frame, path)
+            load_img(detection_img_frame, path, 300, 300)
         except BaseException:
             print("Cannot load file.")
 
-###Code
+def detectShape(frame, fact_frame, rule_frame):
+    global angle_count
+    global opened_image_path
+    global gambarKanan
 
+    rules = []
+    facts = []
+    res = []
+
+    if(angle_count != 0) and (opened_image_path != ""):
+        rules,facts = determiner.runProgram(opened_image_path, angle_count)
+
+        if (len(rules) == 0) :
+            window = Toplevel()
+            lbl = Label(window,text="Shape is not found.")
+            lbl.pack()
+
+        else :
+            time.sleep(1)
+            path = os.getcwd() + "/hasil.png"
+
+            load_img(frame, path, 270, 270)
+
+            for fact in facts:
+                Label(fact_frame, text=fact).pack()
+
+            for rule in rules:
+                Label(rule_frame, text=rule).pack()
+
+            print(gambarKanan)
+            print(facts[len(facts)-1])
+            if (gambarKanan not in facts[len(facts)-1]) :
+                window = Toplevel()
+                lbl = Label(window,text="Shape is not same.")
+                lbl.pack()
+            else :
+                window = Toplevel()
+                lbl = Label(window,text="Shape found.")
+                lbl.pack()
+
+
+def show_rules(frame):
+    rule = Toplevel(frame)
+    text = Frame(rule, height=300, width=300)
+    text.pack()
+
+    scroll_y = Scrollbar(rule, orient="vertical")
+
+    with open("rule.txt", "r") as f:
+        lbl = Label(text, text=f.read())
+        lbl.pack(side="left")
+
+def show_facts(frame):
+    fact = Toplevel(frame)
+
+    for item in determiner.list_facts:
+        lbl = Label(fact, text=item)
+        lbl.pack()
+
+
+###Global variable
+angle_count = 0
+opened_image_path = ""
+
+#if  __name__ == "__main__":
 root = Tk()
 root.title("TUBES 2 AI")
 
@@ -72,7 +179,7 @@ source_img_frame = Frame(upper_window, height=300, width=300, bg= from_rgb((255,
 source_img_frame.grid(row=1, column=0)
 
 path = os.getcwd() + "/Shape_collections/init_source.jpg"
-load_img(source_img_frame,path)
+load_img(source_img_frame,path,300,300)
 
 pad("horizontal",upper_window,1,1,10)
 
@@ -84,7 +191,7 @@ detection_img_frame = Frame(upper_window, height=300, width=300, bg= from_rgb((2
 detection_img_frame.grid(row=1, column=2)
 
 path = os.getcwd() + "/Shape_collections/init_detection_img.jpg"
-load_img(detection_img_frame,path)
+load_img(detection_img_frame,path,300,300)
 
 pad("horizontal",upper_window,1,3,10)
 
@@ -96,7 +203,7 @@ menu_frame.grid(row=1, column=4)
 for i in range(2,9):
     if(i%2 == 0):
         #pad([vertical or horizontal],window,row,column,[height or width])
-        pad("vertical",menu_frame,i,0,10)
+        pad("vertical",menu_frame,i,0,5)
 
 ###==================== Buttons
 ###============================== Open Image
@@ -108,19 +215,23 @@ open_rule_btn = Button(menu_frame, text="Open Rule Editor", bg ="white", fg="bla
 open_rule_btn.grid(row=3, column=0)
 
 ###============================== Show Rules
-show_rule_btn = Button(menu_frame, text="Show Rules", bg ="white", fg="black", width=18)
+show_rule_btn = Button(menu_frame, text="Show Rules", bg ="white", fg="black", width=18, command= lambda:openeditor())
 show_rule_btn.grid(row=5, column=0)
 
 ###============================== Show Facts
-show_facts_btn = Button(menu_frame, text="Show Facts", bg ="white", fg="black", width=18)
+show_facts_btn = Button(menu_frame, text="Show Facts", bg ="white", fg="black", width=18, command= lambda:show_facts(root))
 show_facts_btn.grid(row=7, column=0)
+
+###============================== Detect
+detect_btn = Button(menu_frame, text="DETECT", bg ="white", fg="black", width=18, command= lambda:detectShape(detection_result_frame,matched_facts_frame,hit_rules_frame))
+detect_btn.grid(row=9, column=0)
 
 ###============================== TreeView
 menu_lbl = Label(menu_frame, text="What shape do you want")
-menu_lbl.grid(row=9, column=0)
+menu_lbl.grid(row=11, column=0)
 
 tree = ttk.Treeview(menu_frame)
-tree.grid(row=10, column=0)
+tree.grid(row=12, column=0)
 tree.config(height=5)
 
 tree.insert('', '0', 'root', text="All Shapes")

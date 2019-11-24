@@ -16,6 +16,7 @@
     (total-point 3)
     (not (bentuk ?))
     =>
+    (callFact "(is segitiga)")
     (callRule "determine-segitiga")
     (assert (is segitiga)))
 
@@ -24,6 +25,7 @@
     (sudut utama atas 90)
     (not (bentuk ?))
     =>
+    (callFact "(is tumpul)")
     (callRule "determine-segitiga-tumpul")
     (assert (is tumpul)))
 
@@ -32,6 +34,7 @@
     (ada dua sudut sama)
     (not (bentuk ?))
     =>
+    (callFact "(bentuk segitiga tumpul sama kaki)")
     (callRule "determine-segitiga-tumpul-sama-kaki")
     (assert (bentuk "segitiga tumpul sama kaki")))
 
@@ -40,6 +43,7 @@
     (tidak ada dua sudut sama)
     (not (bentuk ?))
     =>
+    (callFact "(bentuk segitiga tumpul tidak beraturan)")
     (callRule "determine-segitiga-tumpul-tidak-beraturan")
     (assert (bentuk "segitiga tumpul tidak beraturan")))
 
@@ -48,6 +52,7 @@
     (sudut utama sama 90)
     (not (bentuk ?))
     =>
+    (callFact "(is siku)")
     (callRule "determine-segitiga-siku")
     (assert (is siku)))
 
@@ -56,6 +61,7 @@
     (ada dua sudut sama)
     (not (bentuk ?))
     =>
+    (callFact "(bentuk segitiga siku sama kaki)")
     (callRule "determine-segitiga-siku-sama-kaki")
     (assert (bentuk "segitiga siku sama kaki")))
 
@@ -64,6 +70,7 @@
     (tidak ada dua sudut sama)
     (not (bentuk ?))
     =>
+    (callFact "(bentuk segitiga siku tidak beraturan)")
     (callRule "determine-segitiga-siku-tidak-beraturan")
     (assert (bentuk "segitiga siku tidak beraturan")))
 
@@ -72,6 +79,7 @@
     (sudut utama bawah 90)
     (not (bentuk ?))
     =>
+    (callFact "(is lancip)")
     (callRule "determine-segitiga-lancip")
     (assert (is lancip)))
 
@@ -80,6 +88,7 @@
     (ada dua sudut sama)
     (not (bentuk ?))
     =>
+    (callFact "(bentuk segitiga lancip sama kaki)")
     (callRule "determine-segitiga-lancip-sama-kaki")
     (assert (bentuk "segitiga lancip sama kaki")))
 
@@ -88,6 +97,7 @@
     (semua sudut sama)
     (not (bentuk ?))
     =>
+    (callFact "(bentuk segitiga sama sisi)")
     (callRule "determine-segitiga-lancip-sama-sisi")
     (assert (bentuk "segitiga sama sisi")))
 
@@ -96,6 +106,7 @@
     (tidak ada dua sudut sama)
     (not (bentuk ?))
     =>
+    (callFact "(bentuk segitiga lancip tidak beraturan)")
     (callRule "determine-segitiga-lancip-tidak-beraturan")
     (assert (bentuk "segitiga lancip tidak beraturan")))
 
@@ -103,23 +114,26 @@
     (total-point 4)
     (not (bentuk ?))
     =>
+    (callFact "(is segiempat)")
     (callRule "determine-segiempat")
     (assert (is segiempat)))
 
 (defrule determine-jajargenjang ""
     (is segiempat)
-    (2 pasang sudut berhadapan sama)
+    (dua pasang sudut berhadapan sama)
     (not (bentuk ?))
     =>
+    (callFact "(is jajargenjang)")
     (callRule "determine-jajargenjang")
     (assert (is jajargenjang)))
 
 (defrule determine-layanglayang ""
     (is segiempat)
-    (1 pasang sudut berhadapan sama)
-    (1 pasang sudut berhadapan tidak sama)
+    (satu pasang sudut berhadapan sama)
+    (satu pasang sudut berhadapan tidak sama)
     (not (bentuk ?))
     =>
+    (callFact "(bentuk layang-layang)")
     (callRule "determine-layanglayang")
     (assert (bentuk "layang-layang")))
 
@@ -128,30 +142,34 @@
     (semua sisi sama)
     (not (bentuk ?))
     =>
+    (callFact "(bentuk segi empat beraturan)")
     (callRule "determine-segi-empat-beraturan")
     (assert (bentuk "segi empat beraturan")))
 
 (defrule determine-trapesium-sama-kaki ""
     (is segiempat)
-    (2 pasang sudut bersebelahan sama)
+    (dua pasang sudut bersebelahan sama)
     (not (bentuk ?))
     =>
+    (callFact "(bentuk trapesium-sama-kaki)")
     (callRule "determine-trapesium-sama-kaki")
     (assert (bentuk "trapesium-sama-kaki")))
 
 (defrule determine-trapesium-rata-kiri ""
     (is segiempat)
-    (2 sudut kiri 90)
+    (dua sudut kiri 90)
     (not (bentuk ?))
     =>
+    (callFact "(bentuk trapesium-rata-kiri)")
     (callRule "determine-trapesium-rata-kiri")
     (assert (bentuk "trapesium-rata-kiri")))
 
 (defrule determine-trapesium-rata-kanan ""
     (is segiempat)
-    (2 sudut kanan 90)
+    (dua sudut kanan 90)
     (not (bentuk ?))
     =>
+    (callFact "(bentuk trapesium-rata-kanan)")
     (callRule "determine-trapesium-rata-kanan")
     (assert (bentuk "trapesium-rata-kanan")))
 
@@ -159,6 +177,7 @@
     (total-point 5)
     (not (bentuk ?))
     =>
+    (callFact "(is segilima)")
     (callRule "determine-segilima")
     (assert (is segilima)))
 
@@ -167,6 +186,7 @@
     (semua sudut sama)
     (not (bentuk ?))
     =>
+    (callFact "(bentuk segilima sama sisi)")
     (callRule "determine-segilima-sama-sisi")
     (assert (bentuk "segilima sama sisi")))
 
@@ -175,6 +195,7 @@
     (semua sudut tidak sama)
     (not (bentuk ?))
     =>
+    (callFact "(bentuk segilima tidak beraturan)")
     (callRule "determine-segilima-tidak-beraturan")
     (assert (bentuk "segilima tidak beraturan")))
 
@@ -182,6 +203,7 @@
     (total-point 6)
     (not (bentuk ?))
     =>
+    (callFact "(is segienam)")
     (callRule "determine-segienam")
     (assert (is segienam)))
 
@@ -190,6 +212,7 @@
     (semua sudut sama)
     (not (bentuk ?))
     =>
+    (callFact "(bentuk segienam sama sisi)")
     (callRule "determine-segienam-sama-sisi")
     (assert (bentuk "segienam sama sisi")))
 
@@ -198,23 +221,6 @@
     (semua sudut tidak sama)
     (not (bentuk ?))
     =>
+    (callFact "(bentuk segienam tidak beraturan)")
     (callRule "determine-segienam-tidak-beraturan")
     (assert (bentuk "segienam tidak beraturan")))
-
-;;;********************************
-;;;* CONCLUSION RULES *
-;;;********************************
-
-(defrule judul-sistem ""
-    (declare (salience 10))
-    =>
-    (printout t crlf)
-    (printout t "Deteksi Bentuk"))
-
-(defrule print-bentuk ""
-    (declare (salience 10))
-    (bentuk ?item)
-    =>
-    (printout t crlf)
-    (printout t "Bentuk :")
-    (format t " %s%n%n%n" ?item))

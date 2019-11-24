@@ -28,3 +28,4 @@ Bila sama, maka akan diberitahu bahwa terdapat gambar yang sama.
 Kolom ‘Matched Facts’ merupakan kolom yang berisi fakta yang dihasilkan oleh CLIPS.
 Kolom ‘Detection Image’ akan menampilkan gambar hasil deteksi bila sama atau serupa.
 Kolom ‘Activated Rules’ merupakan rule yang diaktivasi oleh CLIPS.
+
