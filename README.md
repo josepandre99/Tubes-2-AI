@@ -1,4 +1,4 @@
-# Tubes-2-AI
+# Tugas Besar 2 IF 3170 Inteligensi Buatan
 ## Deteksi Bentuk Dasar Geometri berdasarkan Knowledge Based System
 
 ### Anggota Kelompok :
