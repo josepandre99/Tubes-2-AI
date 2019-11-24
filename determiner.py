@@ -88,119 +88,38 @@ elif nAngle == 4 :
     if n == 0 :
         list_facts.append("(semua sudut sama)")
     
-    ns = 6
+    ns = 3
     if (list_length[0] / list_length[1]) >= 0.5 and (list_length[0] / list_length[1]) <= 1.5 :
         ns-=1
     if (list_length[0] / list_length[2]) >= 0.5 and (list_length[0] / list_length[2]) <= 1.5 :
         ns-=1
     if (list_length[0] / list_length[3]) >= 0.5 and (list_length[0] / list_length[3]) <= 1.5 :
-        ns-=1
-    if (list_length[1] / list_length[2]) >= 0.5 and (list_length[1] / list_length[2]) <= 1.5 :
-        ns-=1
-    if (list_length[1] / list_length[3]) >= 0.5 and (list_length[1] / list_length[3]) <= 1.5 :
-        ns-=1
-    if (list_length[2] / list_length[3]) >= 0.5 and (list_length[2] / list_length[3]) <= 1.5 :
         ns-=1
     if ns == 0 :
         list_facts.append("(semua sisi sama)")
 
-    if (list_length[0] / list_length[1]) >= 0.5 and (list_length[0] / list_length[1]) <= 1.5 :
-        list_facts.append("(sisi 1 sama sisi 2)")    
-        if (list_length[2] / list_length[3]) >= 0.5 and (list_length[2] / list_length[3]) <= 1.5 :
-            list_facts.append("(sisi 3 sama sisi 4)")
-        else:
-            list_facts.append("(sisi 3 tidak sama sisi 4)")
-    if (list_length[0] / list_length[2]) >= 0.5 and (list_length[0] / list_length[2]) <= 1.5 :
-        list_facts.append("(sisi 1 sama sisi 2)")    
-        if (list_length[1] / list_length[3]) >= 0.5 and (list_length[1] / list_length[3]) <= 1.5 :
-            list_facts.append("(sisi 3 sama sisi 4)")
-        else:
-            list_facts.append("(sisi 3 tidak sama sisi 4)")
-    if (list_length[0] / list_length[3]) >= 0.5 and (list_length[0] / list_length[3]) <= 1.5 :
-        list_facts.append("(sisi 1 sama sisi 2)")    
-        if (list_length[1] / list_length[2]) >= 0.5 and (list_length[1] / list_length[2]) <= 1.5 :
-            list_facts.append("(sisi 3 sama sisi 4)")
-        else:
-            list_facts.append("(sisi 3 tidak sama sisi 4)")
-    if (list_length[1] / list_length[2]) >= 0.5 and (list_length[1] / list_length[2]) <= 1.5 :
-        list_facts.append("(sisi 1 sama sisi 2)")    
-        if (list_length[0] / list_length[3]) >= 0.5 and (list_length[0] / list_length[3]) <= 1.5 :
-            list_facts.append("(sisi 3 sama sisi 4)")
-        else:
-            list_facts.append("(sisi 3 tidak sama sisi 4)")
-    if (list_length[1] / list_length[3]) >= 0.5 and (list_length[1] / list_length[3]) <= 1.5 :
-        list_facts.append("(sisi 1 sama sisi 2)")    
-        if (list_length[0] / list_length[2]) >= 0.5 and (list_length[0] / list_length[2]) <= 1.5 :
-            list_facts.append("(sisi 3 sama sisi 4)")
-        else:
-            list_facts.append("(sisi 3 tidak sama sisi 4)")
-    if (list_length[2] / list_length[3]) >= 0.5 and (list_length[2] / list_length[3]) <= 1.5 :
-        list_facts.append("(sisi 1 sama sisi 2)")    
-        if (list_length[0] / list_length[1]) >= 0.5 and (list_length[0] / list_length[1]) <= 1.5 :
-            list_facts.append("(sisi 3 sama sisi 4)")
-        else:
-            list_facts.append("(sisi 3 tidak sama sisi 4)")
+    if (list_angles[0] / list_angles[2] >= 0.5) and (list_angles[0] / list_angles[2] <= 1.5) :
+        if (list_angles[1] / list_angles[3] >= 0.5) and (list_angles[1] / list_angles[3] <= 1.5) :
+            list_facts.append("(2 pasang sudut berhadapan sama)")
+        else :
+            list_facts.append("(1 pasang sudut berhadapan sama)")
+            list_facts.append("(1 pasang sudut berhadapan tidak sama)")
+    else :
+        if (list_angles[1] / list_angles[3] >= 0.5) and (list_angles[1] / list_angles[3] <= 1.5) :
+            list_facts.append("(1 pasang sudut berhadapan sama)")
+            list_facts.append("(1 pasang sudut berhadapan tidak sama)")
 
-    if (list_angles[0] / list_angles[1]) >= 0.5 and (list_angles[0] / list_angles[1]) <= 1.5 :
-        list_facts.append("(sudut 1 sama sudut 2)")    
-        if list_angles[0] >= 85.5 and list_angles[0] <= 94.5 :
-            list_facts.append("(sudut 1 sama 90)")    
-        if (list_angles[2] / list_angles[3]) >= 0.5 and (list_angles[2] / list_angles[3]) <= 1.5 :
-            list_facts.append("(sudut 3 sama sudut 4)")    
-            if list_angles[2] >= 85.5 and list_angles[2] <= 94.5 :
-                list_facts.append("(sudut 3 sama 90)") 
-        else:
-            list_facts.append("(sudut 3 tidak sama sudut 4)")
-    if (list_angles[0] / list_angles[2]) >= 0.5 and (list_angles[0] / list_angles[2]) <= 1.5 :
-        list_facts.append("(sudut 1 sama sudut 2)")    
-        if list_angles[0] >= 85.5 and list_angles[0] <= 94.5 :
-            list_facts.append("(sudut 1 sama 90)")
-        if (list_angles[1] / list_angles[3]) >= 0.5 and (list_angles[1] / list_angles[3]) <= 1.5 :
-            list_facts.append("(sudut 3 sama sudut 4)")
-            if list_angles[1] >= 85.5 and list_angles[1] <= 94.5 :
-                list_facts.append("(sudut 3 sama 90)") 
-        else:
-            list_facts.append("(sudut 3 tidak sama sudut 4)")
-    if (list_angles[0] / list_angles[3]) >= 0.5 and (list_angles[0] / list_angles[3]) <= 1.5 :
-        list_facts.append("(sudut 1 sama sudut 2)")    
-        if list_angles[0] >= 85.5 and list_angles[0] <= 94.5 :
-            list_facts.append("(sudut 1 sama 90)")
-        if (list_angles[1] / list_angles[2]) >= 0.5 and (list_angles[1] / list_angles[2]) <= 1.5 :
-            list_facts.append("(sudut 3 sama sudut 4)")
-            if list_angles[1] >= 85.5 and list_angles[1] <= 94.5 :
-                list_facts.append("(sudut 3 sama 90)") 
-        else:
-            list_facts.append("(sudut 3 tidak sama sudut 4)")
-    if (list_angles[1] / list_angles[2]) >= 0.5 and (list_angles[1] / list_angles[2]) <= 1.5 :
-        list_facts.append("(sudut 1 sama sudut 2)")    
-        if list_angles[1] >= 85.5 and list_angles[1] <= 94.5 :
-            list_facts.append("(sudut 1 sama 90)")
-        if (list_angles[0] / list_angles[3]) >= 0.5 and (list_angles[0] / list_angles[3]) <= 1.5 :
-            list_facts.append("(sudut 3 sama sudut 4)")
-            if list_angles[0] >= 85.5 and list_angles[0] <= 94.5 :
-                list_facts.append("(sudut 3 sama 90)") 
-        else:
-            list_facts.append("(sudut 3 tidak sama sudut 4)")
-    if (list_angles[1] / list_angles[3]) >= 0.5 and (list_angles[1] / list_angles[3]) <= 1.5 :
-        list_facts.append("(sudut 1 sama sudut 2)")
-        if list_angles[1] >= 85.5 and list_angles[1] <= 94.5 :
-            list_facts.append("(sudut 1 sama 90)")    
-        if (list_angles[0] / list_angles[2]) >= 0.5 and (list_angles[0] / list_angles[2]) <= 1.5 :
-            list_facts.append("(sudut 3 sama sudut 4)")
-            if list_angles[0] >= 85.5 and list_angles[0] <= 94.5 :
-                list_facts.append("(sudut 3 sama 90)") 
-        else:
-            list_facts.append("(sudut 3 tidak sama sudut 4)")
-    if (list_angles[2] / list_angles[3]) >= 0.5 and (list_angles[2] / list_angles[3]) <= 1.5 :
-        list_facts.append("(sudut 1 sama sudut 2)")
-        if list_angles[2] >= 85.5 and list_angles[2] <= 94.5 :
-            list_facts.append("(sudut 1 sama 90)")    
-        if (list_angles[0] / list_angles[1]) >= 0.5 and (list_angles[0] / list_angles[1]) <= 1.5 :
-            list_facts.append("(sudut 3 sama sudut 4)")
-            if list_angles[0] >= 85.5 and list_angles[0] <= 94.5 :
-                list_facts.append("(sudut 3 sama 90)") 
-        else:
-            list_facts.append("(sudut 3 tidak sama sudut 4)")
+    if (list_angles[0] / list_angles[1] >= 0.5) and (list_angles[0] / list_angles[1] <= 1.5) :
+        if (list_angles[2] / list_angles[3] >= 0.5) and (list_angles[2] / list_angles[3] <= 1.5) :
+            list_facts.append("(2 pasang sudut bersebelahan sama)")
+    elif (list_angles[0] / list_angles[3] >= 0.5) and (list_angles[0] / list_angles[3] <= 1.5) :
+        if (list_angles[1] / list_angles[2] >= 0.5) and (list_angles[1] / list_angles[2] <= 1.5) :
+            list_facts.append("(2 pasang sudut bersebelahan sama)")
+
+    if (list_angles[0] <= 94.5) and (list_angles[0] >= 85.5) :
+        list_facts.append("(2 sudut kiri 90)")
+    elif (list_angles[2] <= 94.5) and (list_angles[2] >= 85.5) :
+        list_facts.append("(2 sudut kanan 90)")
 
 elif nAngle == 5 :
     list_facts.append("(total-point 5)")
@@ -246,5 +165,3 @@ env.run()
 
 for f in env.facts() :
     listFactsUsed.append(f)
-
-file.close()

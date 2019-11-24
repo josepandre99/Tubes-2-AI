@@ -22,15 +22,12 @@ elif (ada 2 sudut 90):
 	# trapesium rata kiri
 	# angle 3 > angle 4 
 	if (list_angle[2] < list_angle[3]):
-		list_facts.append("(sudut 1 sama sisi 2)")
-		list_facts.append("(sudut 1 sama 90)")
-		list_facts.append("(sudut 3 besar sisi 4)")
+		list_facts.append("(2 sudut kiri 90)")
+
 	# trapesium rata kiri
 	# angle 3 < angle 4 
 	elif (list_angle[2] < list_angle[3]):
-		list_facts.append("(sudut 1 sama sisi 2)")
-		list_facts.append("(sudut 1 sama 90)")
-		list_facts.append("(sudut 3 kecil sisi 4)")
+		list_facts.append("(2 sudut kiri 90)")
 
 else:
 	find = false
