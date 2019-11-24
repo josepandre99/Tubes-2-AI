@@ -151,18 +151,18 @@
     (assert (bentuk "trapesium-sama-kaki")))
 
 (defrule determine-trapesium-rata-kiri ""
-    (is trapesium)
     (sudut 1 sama sudut 2)
     (sudut 1 sama 90)
+    (sudut 3 besar sudut 4)
     (not (bentuk ?))
     =>
     (callRule "determine-trapesium-rata-kiri")
     (assert (bentuk "trapesium-rata-kiri")))
 
 (defrule determine-trapesium-rata-kanan ""
-    (is trapesium)
-    (sudut 3 sama sudut 4)
-    (sudut 3 sama 90)
+    (sudut 1 sama sudut 2)
+    (sudut 1 sama 90)
+    (sudut 3 kecil sudut 4)
     (not (bentuk ?))
     =>
     (callRule "determine-trapesium-rata-kanan")

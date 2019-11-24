@@ -1,11 +1,36 @@
+# buat rotasi list angle 4
+# mis list = [1,3,7] => [3,7,1]
+def rotate_list(aList):
+	tList = list(aList)
+	rList = []
+	i = 0
+	rList[3] = tList[0]
+	while (i < 3):
+		rList[i] = tList[i+1]
+		i++
+	return tList  
+
 if (persegi):
 
 elif (ada 2 sudut 90):
-	# rotasi indeks maks.4
+	
+	# buat fungsi untuk rotasi list agar indeks sudut 1 sm 2 = 90
+	
+	# asumsi list searah jarum jam
+	# angle 1 = angle 2 = 90
 
 	# trapesium rata kiri
-
+	# angle 3 > angle 4 
+	if (list_angle[2] < list_angle[3]):
+		list_facts.append("(sudut 1 sama sisi 2)")
+		list_facts.append("(sudut 1 sama 90)")
+		list_facts.append("(sudut 3 besar sisi 4)")
 	# trapesium rata kiri
+	# angle 3 < angle 4 
+	elif (list_angle[2] < list_angle[3]):
+		list_facts.append("(sudut 1 sama sisi 2)")
+		list_facts.append("(sudut 1 sama 90)")
+		list_facts.append("(sudut 3 kecil sisi 4)")
 
 else:
 	find = false
@@ -31,6 +56,8 @@ else:
 				list_facts.append("(sudut 3 sama sudut 4)")
 				find = true
 		i++
+		if (!find && i = 1):
+			aList = rotate_list(aList)
 
 	if (!find):
 		# trapesium sembarang atau bukan bentuk
