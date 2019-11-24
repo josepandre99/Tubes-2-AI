@@ -108,8 +108,8 @@
 
 (defrule determine-jajargenjang ""
     (is segiempat)
-    (sisi 1 sama sisi 2)
-    (sisi 3 sama sisi 4)
+    (sisi 1 sama sisi 3)
+    (sisi 2 sama sisi 4)
     (not (bentuk ?))
     =>
     (callRule "determine-jajargenjang")
@@ -117,8 +117,8 @@
 
 (defrule determine-layanglayang ""
     (is jajargenjang)
-    (sudut 1 sama sudut 2)
-    (sudut 3 tidak sama sudut 4)
+    (sisi 1 sama sisi 2)
+    (sisi 3 sama sisi 4)
     (not (bentuk ?))
     =>
     (callRule "determine-layanglayang")
@@ -134,8 +134,8 @@
 
 (defrule determine-trapesium ""
     (is segiempat)
-    (sisi 1 sama sisi 2)
-    (sisi 3 tidak sama sisi 4)
+    (sisi 1 sama sisi 3)
+    (sisi 2 tidak sama sisi 4)
     (not (bentuk ?))
     =>
     (callRule "determine-trapesium")
