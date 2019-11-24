@@ -2,10 +2,11 @@
 ## Deteksi Bentuk Dasar Geometri berdasarkan Knowledge Based System
 
 ### Anggota Kelompok :
-#### -Suhailie - 13517045
-#### -Vijjasena - 13517084
-#### -Josep Andre Ginting - 13517108
-#### -Nando Rusrin Pratama - 13517148
+###### -Suhailie - 13517045
+###### -Vijjasena - 13517084
+###### -Josep Andre Ginting - 13517108
+###### -Nando Rusrin Pratama - 13517148
+
 
 ### Petunjuk
 
